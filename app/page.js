@@ -1,103 +1,242 @@
-import Image from "next/image";
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  featuresData,
+  howItWorksData,
+  statsData,
+  testimonialsData,
+} from "@/data/landing";
+import HeroSection from "@/components/hero";
+import Link from "next/link";
+import { ArrowRight, GraduationCap, Users, Target, BookOpen, Award, Shield } from "lucide-react";
 
-export default function Home() {
+const LandingPage = () => {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-slate-900 text-white font-sans">
+      {/* Hero Section */}
+      <HeroSection />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Stats Section */}
+      <section className="py-20 bg-gradient-to-br from-slate-800 to-slate-900 border-y border-white/10">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Empowering <span className="text-blue-400">Learners Worldwide</span>
+            </h2>
+            <p className="text-gray-400">Join our growing community of financially educated individuals</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {statsData.map((stat, index) => (
+              <div key={index} className="group">
+                <div className="bg-gradient-to-r from-blue-600/20 to-teal-600/20 rounded-lg p-6 border border-white/10 hover:border-blue-400/50 transition-all duration-300">
+                  <div className="text-4xl font-extrabold bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-gray-300">{stat.label}</div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-20 bg-slate-900">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Everything You Need to{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent">
+                Master Financial Literacy
+              </span>
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Comprehensive learning tools and resources designed to build your financial knowledge and confidence
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuresData.map((feature, index) => (
+              <Card key={index} className="bg-slate-800/50 border-white/10 hover:border-blue-400/50 transition-all duration-300 group">
+                <CardContent className="space-y-4 pt-6 p-6">
+                  <div className="text-blue-400 group-hover:text-teal-400 transition-colors">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-white">{feature.title}</h3>
+                  <p className="text-gray-400">{feature.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="py-20 bg-gradient-to-br from-slate-800 to-slate-900">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Your Learning <span className="text-blue-400">Journey</span>
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Start building your financial expertise with our structured learning path
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {howItWorksData.map((step, index) => (
+              <div key={index} className="text-center group">
+                <div className="relative mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-teal-600 rounded-full flex items-center justify-center mx-auto text-white text-xl font-bold">
+                    {step.icon}
+                  </div>
+                  {index < howItWorksData.length - 1 && (
+                    <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gradient-to-r from-blue-600 to-teal-600 transform translate-x-8"></div>
+                  )}
+                </div>
+                <h3 className="text-xl font-semibold mb-4 text-white">{step.title}</h3>
+                <p className="text-gray-400">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Learning Achievements Section */}
+      <section className="py-20 bg-slate-900">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Earn <span className="text-blue-400">Certifications</span> & Build Credentials
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Showcase your financial knowledge with industry-recognized certifications
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="bg-gradient-to-r from-blue-600/20 to-blue-800/20 border-blue-500/20 hover:border-blue-400/50 transition-all duration-300 group">
+              <CardContent className="pt-6 p-6 text-center">
+                <Award className="w-12 h-12 text-blue-400 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-white mb-2">Personal Finance Basics</h3>
+                <p className="text-gray-400 mb-4">Master budgeting, saving, and debt management fundamentals</p>
+                <div className="bg-blue-500/20 rounded-full px-4 py-2 inline-block">
+                  <span className="text-blue-300 text-sm font-medium">Beginner Level</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-to-r from-teal-600/20 to-teal-800/20 border-teal-500/20 hover:border-teal-400/50 transition-all duration-300 group">
+              <CardContent className="pt-6 p-6 text-center">
+                <BookOpen className="w-12 h-12 text-teal-400 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-white mb-2">Investment Strategies</h3>
+                <p className="text-gray-400 mb-4">Learn portfolio management and investment planning</p>
+                <div className="bg-teal-500/20 rounded-full px-4 py-2 inline-block">
+                  <span className="text-teal-300 text-sm font-medium">Intermediate Level</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-to-r from-indigo-600/20 to-indigo-800/20 border-indigo-500/20 hover:border-indigo-400/50 transition-all duration-300 group">
+              <CardContent className="pt-6 p-6 text-center">
+                <Shield className="w-12 h-12 text-indigo-400 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-white mb-2">Financial Planning</h3>
+                <p className="text-gray-400 mb-4">Advanced retirement and estate planning strategies</p>
+                <div className="bg-indigo-500/20 rounded-full px-4 py-2 inline-block">
+                  <span className="text-indigo-300 text-sm font-medium">Advanced Level</span>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section id="testimonials" className="py-20 bg-gradient-to-br from-slate-800 to-slate-900">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Success <span className="text-blue-400">Stories</span>
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Real stories from learners who transformed their financial understanding
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonialsData.map((testimonial, index) => (
+              <Card key={index} className="bg-slate-800/50 border-white/10 hover:border-blue-400/50 transition-all duration-300 group">
+                <CardContent className="pt-6 p-6">
+                  <div className="mb-4">
+                    <div className="font-semibold text-lg text-white">{testimonial.name}</div>
+                    <div className="text-sm text-blue-400">{testimonial.role}</div>
+                  </div>
+                  <p className="text-gray-400 italic">"{testimonial.quote}"</p>
+                  <div className="flex mt-4 text-yellow-400">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-sm">⭐</span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-blue-900 via-slate-900 to-teal-900 relative overflow-hidden">
+        {/* Background effects */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 left-10 w-40 h-40 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+          <div className="absolute bottom-10 right-10 w-40 h-40 bg-teal-600 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000"></div>
+        </div>
+        
+        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+          <div className="mb-8">
+            <GraduationCap className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              Ready to Master Your{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent">
+                Financial Future?
+              </span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+              Join thousands of learners already building financial confidence with EduFinance.
+            </p>
+          </div>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link href="/dashboard">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-8 py-6 text-lg font-semibold rounded-full shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105 group"
+              >
+                Start Learning Now
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+            <div className="flex items-center gap-2 text-gray-400">
+              <Users className="w-5 h-5" />
+              <span>Free to get started</span>
+            </div>
+          </div>
+          
+          <div className="mt-8 flex justify-center gap-8 text-sm text-gray-500">
+            <div className="flex items-center gap-1">
+              <Target className="w-4 h-4" />
+              <span>Self-paced learning</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Award className="w-4 h-4" />
+              <span>Earn certificates</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <BookOpen className="w-4 h-4" />
+              <span>Expert-created content</span>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
-}
+};
+
+export default LandingPage;
